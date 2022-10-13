@@ -1,2 +1,7 @@
 # learn_computervision
-? Infrared Vision: Near vs. Mid-Far Infrared Images
+
+| 분류 | 주제             | 설명 | 코드                              | 참조 |
+| ---- | ---------------- | ---- | --------------------------------- | ---- |
+|      | blurrings_median |      | [py](./codes/blurrings_median.py) |      |
+|      | embossing        |      | [py](./codes/embossings.py)       |      |
+|      | Hough transform  |      |                                   |      |
