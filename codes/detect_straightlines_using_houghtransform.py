@@ -18,11 +18,11 @@ import numpy as np
 import math
 
 file_name = './datas/images/pentagon.png'
-img = cv.imread(file_name)
+img = cv.imread(file_name, cv.IMREAD_GRAYSCALE)
 
 print('image shape: ', img.shape)
 
-plt.imshow(img, )
+plt.imshow(img, cmap=plt.get_cmap('gray'))
 plt.show()
 
 # plt.savefig("save_source",bbox_inches='tight')
@@ -52,7 +52,11 @@ theta_dim = 300
 import numpy as np
 hough_space = np.zeros((r_dim,theta_dim))
 
-for x in range(x_max):
+from tqdm import trange 
+speed_bar = 0
+for x in trange(x_max):
+    speed_bar += x
+    print(speed_bar)
     for y in range(y_max):
         if img[x,y,0] == 255: continue
         for itheta in range(theta_dim):
@@ -62,7 +66,7 @@ for x in range(x_max):
             hough_space[ir,itheta] = hough_space[ir,itheta] + 1
 
 import matplotlib.pyplot as plt
-plt.imshow(hough_space, origin='lower')
+plt.imshow(hough_space, cmap=plt.get_cmap('gray'))
 plt.xlim(0,theta_dim)
 plt.ylim(0,r_dim)
 
@@ -86,7 +90,7 @@ plt.show()
 
 """## Find the maximums"""
 
-neighborhood_size = 100
+neighborhood_size = 130
 threshold = 20
 
 import scipy.ndimage.filters as filters
@@ -109,9 +113,9 @@ for dy,dx in slices:
     y_center = (dy.start + dy.stop - 1)/2    
     y.append(y_center)
 
-print('x:{}, y:{}'.format(x,y))
+print('coordination - x:{}, y:{}'.format(x,y))
 
-plt.imshow(hough_space, origin='lower')
+plt.imshow(hough_space, origin='lower', cmap=plt.get_cmap('gray'))
 # plt.savefig('save_hough_space_i_j.png', bbox_inches = 'tight')
 
 plt.autoscale(False)
@@ -125,7 +129,6 @@ plt.show()
 """##Plot straight lines"""
 
 line_index = 1
-
 for i,j in zip(y, x):
 
     r = round( (1.0 * i * r_max ) / r_dim,1)
