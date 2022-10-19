@@ -1,6 +1,5 @@
 ### refer : https://www.moonbooks.org/Articles/Implementing-a-simple-python-code-to-detect-straight-lines-using-Hough-transform/#myGallery
 
-from turtle import color
 import cv2 as cv
 
 import matplotlib.pyplot as plt
